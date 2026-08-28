@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты - Магазин{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <h1 class="display-4 text-primary mb-4">Контакты</h1>
+        
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h2 class="h4 font-weight-bold mb-3">Наши контакты</h2>
+                <p class="text-muted">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
+                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
+                    in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                
+                <div class="alert alert-info" role="alert">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    While these feedback styles cannot be styled with CSS, you can still customize 
+                    the feedback text through JavaScript.
+                </div>
+                
+                <hr>
+                
+                <form id="contactForm" class="mt-4">
+                    <div class="form-group">
+                        <label for="name" class="font-weight-bold">
+                            <i class="fas fa-user mr-2"></i>Имя
+                        </label>
+                        <input type="text" class="form-control" id="name" placeholder="Введите ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="font-weight-bold">
+                            <i class="fas fa-envelope mr-2"></i>Пошта
+                        </label>
+                        <input type="email" class="form-control" id="email" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="font-weight-bold">
+                            <i class="fas fa-comment mr-2"></i>Сообщение
+                        </label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary px-5">
+                        <i class="fas fa-paper-plane mr-2"></i>Отправить
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-end mt-4 pt-3 border-top">
+            <span class="text-secondary mr-3"><i class="fas fa-id-card mr-1"></i>Профиль</span>
+            <span class="text-secondary mr-3"><i class="fas fa-sign-out-alt mr-1"></i>Выход</span>
+            <span class="font-weight-bold text-primary"><i class="fas fa-user-circle mr-1"></i>Пользователь</span>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var message = $('#message').val();
+            
+            if (!name || !email || !message) {
+                alert('Пожалуйста, заполните все поля!');
+                return;
+            }
+            
+            alert('Спасибо, ' + name + '! Ваше сообщение отправлено.');
+            this.reset();
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}
