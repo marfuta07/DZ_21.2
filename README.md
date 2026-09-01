@@ -17,6 +17,7 @@
 
 + Установите на свой компьютер GitHub.
 + Клонируйте репозиторий с GitHub  с помощью веб-URL.
++ https://github.com/marfuta07/DZ_21.2/pull/1
 + Запустить приложение python manage.py
 
 DZ_21.2/
