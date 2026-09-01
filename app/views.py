@@ -1,13 +1,14 @@
-from flask import render_template
+# ============================================================
+# ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМОВ РАБОТЫ
+# ============================================================
+# Раскомментируйте ТОЛЬКО ОДНУ строку ниже
+# ============================================================
 
-def contacts():
-    """Страница контактов"""
-    return render_template('contacts.html', title='Контакты')
+# Режим 1: Полноценный сайт (Задание 1)
+from app.views_mode1 import *
 
-def index():
-    """Главная страница"""
-    return render_template('index.html', title='Главная')
+# Режим 2: Задание 2 (render_template)
+# from app.views_mode2 import *
 
-def category():
-    """Страница категории"""
-    return render_template('category.html', title='Категория 1')
+# Режим 3: Задание 2 (with open) - ОСНОВНОЙ ДЛЯ ЗАДАНИЯ 2
+# from app.views_mode3 import *

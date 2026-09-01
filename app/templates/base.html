@@ -4,97 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Магазин{% endblock %}</title>
-    
-    <!-- Bootstrap 4.5.2 CSS (CDN) -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome (для иконок) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <!-- Свои стили -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    
-    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="/">
-                <i class="fas fa-store me-2"></i>Магазин
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="/">
-                            <i class="fas fa-home me-1"></i>Главная
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'category' %}active{% endif %}" href="/category">
-                            <i class="fas fa-tag me-1"></i>Категория 1
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'contacts' %}active{% endif %}" href="/contacts">
-                            <i class="fas fa-envelope me-1"></i>Контакты
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
-                            <i class="fas fa-user-circle"></i> Пользователь
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-id-card me-2"></i>Профиль
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="#">
-                                <i class="fas fa-sign-out-alt me-2"></i>Выход
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ЛЕВОЕ МЕНЮ -->
+            <nav class="col-md-4 col-lg-3 d-md-block bg-dark sidebar">
+                <div class="position-sticky pt-4">
+                    <h4 class="text-white text-center mb-4">
+                        <i class="fas fa-store mr-2"></i>Магазин
+                    </h4>
 
-    <!-- Основной контент -->
-    <main class="py-4">
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
-    </main>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/">
+                                <i class="fas fa-home mr-3"></i>Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/category">
+                                <i class="fas fa-tag mr-3"></i>Категория 1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/contacts">
+                                <i class="fas fa-envelope mr-3"></i>Контакты
+                            </a>
+                        </li>
+                    </ul>
 
-    <!-- Footer -->
-    <footer class="bg-light py-4 mt-5 border-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-left">
-                    <p class="mb-0 text-muted">
-                        <i class="fas fa-copyright me-1"></i>2026 Магазин. Все права защищены.
-                    </p>
+                    <hr class="bg-secondary">
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white dropdown-toggle" href="#" data-toggle="dropdown">
+                                <i class="fas fa-user-circle mr-3"></i>Пользователь
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-id-card mr-2"></i>Профиль
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Выход
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <a href="#" class="text-muted mr-3"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-muted mr-3"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+            </nav>
+
+            <!-- ОСНОВНОЙ КОНТЕНТ -->
+            <main class="col-md-8 col-lg-9 ml-sm-auto px-md-4 py-4">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <!-- ФУТЕР -->
+    <footer class="footer bg-light py-3 border-top">
+        <div class="container text-center text-muted">
+            <p class="mb-0">
+                <i class="fas fa-copyright mr-1"></i>2026 Магазин. Все права защищены.
+            </p>
         </div>
     </footer>
 
-    <!-- Bootstrap 4.5.2 JS (с удаленного репозитория) -->
-    <!-- Сначала jQuery, затем Popper.js, затем Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <!-- Свои скрипты -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    {% block extra_js %}{% endblock %}
 </body>
 </html>
